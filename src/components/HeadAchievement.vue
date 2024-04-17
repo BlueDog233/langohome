@@ -9,7 +9,7 @@ import SkillsItem from "@/components/item/SkillsItem.vue";
 </script>
 
 <template>
-  <div class="container" style="height: calc(100vh - 60px);border-radius: 30px">
+
     <div class="text-info down">
       <span class="title dance-1" style="display: inline-block">Hello</span>
       <span class="span1">I am <span class="dance-2" style="color: gold;display: inline-block">Lango</span> , a coder</span>
@@ -27,7 +27,6 @@ import SkillsItem from "@/components/item/SkillsItem.vue";
     </div>
     <SkillsItem></SkillsItem>
 
-  </div>
 
 </template>
 

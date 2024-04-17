@@ -17,7 +17,7 @@
   position: relative;
   display: inline-block;
   text-align: center;
-  line-height: 90px;
+  word-wrap: anywhere;
   width: 90px;
   height: 90px;
   border-radius: 15px;

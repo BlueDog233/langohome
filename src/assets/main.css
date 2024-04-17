@@ -6,11 +6,11 @@
   margin: 0;
   box-sizing: border-box;
   font-weight: 400;
+  cursor: default;
 }
 html{
   width: 100vw;
   height: 100vh;
-
   background: linear-gradient(to right,#def3f3,whitesmoke);
   font-family: 'Raleway', "ZCOOL QingKe HuangYou",华文彩云;
 }
