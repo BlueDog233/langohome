@@ -1,11 +1,14 @@
 <script setup>
+const props=defineProps(['describe','src'])
+
+import * as Stronge from "@/base/Stronge.ts";
 
 </script>
 
 <template>
-<div class="img-container up">
-  <img src="https://vuejs.org/images/logo.png"/>
-  <div class="content">999999aaaaaaaaaaaaaaaa99999</div>
+<div class="img-container up" @click="Stronge.sendContent(props.describe,props.src)">
+  <img :src="props.src"/>
+  <div class="content">{{props.describe}}</div>
 </div>
 </template>
 

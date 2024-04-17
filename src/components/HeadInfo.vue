@@ -40,22 +40,14 @@ const clz=computed(()=>{
     <div class="container" style="box-shadow: 0 0 0 black;background: inherit;height: calc(100vh - 220px)">
       <div class="glass-effect t-info down">
         <div class="title dance-1">INFO</div>
-        <div class="title" @mousemove="getI($event)"  @mouseleave="leaveI" >Swust School</div>
-        <div class="title" @mousemove="getI($event)"  @mouseleave="leaveI">Freshman</div>
-        <div class="title">Computer university</div>
-        <div class="title" @mousemove="getI($event)"  @mouseleave="leaveI">18</div>
+        <div class="title" @mousemove="getI($event)"  @mouseleave="leaveI" v-for="(value,key) in Stronge.data['info']">{{key}}</div>
+
         <div class="describe up" v-show="infoC" v-text="infoC"></div>
       </div>
       <div class="labels glass-effect up">
         <div class="L dance-2">LABEL</div>
-        <div class="label" @mousemove="getL($event)"  @mouseleave="leaveL">Java</div>
-        <div class="label">奇门</div>
-        <div class="label">Vue</div>
-        <div class="label">Mincraft</div>
-        <div class="label">跑者</div>
-        <div class="label">Bukkit</div>
-        <div class="label">Javascript</div>
-        <div class="label">Python</div>
+        <div class="label" @mousemove="getL($event)"  @mouseleave="leaveL" v-for="(value,key) in Stronge.data['label']">{{key}}</div>
+
         <div class="describe up" v-if="labelC" v-text="labelC"></div>
       </div>
 
@@ -100,7 +92,7 @@ const clz=computed(()=>{
 }
 .labels{
   line-height:2rem;
-  display: inline-block;
+  display: block;
   margin-left: 20px;
   margin-bottom: 20px;
 }
@@ -109,6 +101,7 @@ const clz=computed(()=>{
   display: block;
   text-align: center;
   font-size: 2rem;
+  width: 100%;
   font-weight: bolder;
   margin-bottom: 20px;
 }
@@ -124,6 +117,7 @@ const clz=computed(()=>{
   transition: all .3s ease;
   cursor: pointer;
   line-height: 1.5rem;
+
 }
 .label:hover{
   color: var(--bright-gold);
@@ -155,6 +149,7 @@ const clz=computed(()=>{
   background-image: url("https://photofortypora.oss-cn-beijing.aliyuncs.com/BlueDog.png");
 }
 .info{
+  width: 100%;
   position: relative;
   border: 1px solid var(--color-background);
   border-radius: 20px;

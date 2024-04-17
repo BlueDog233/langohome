@@ -13,31 +13,15 @@
 </template>
 
 <script>
+import * as Stronge from "@/base/Stronge.ts";
+
+console.log(Stronge.data['skills']);
 export default {
   data() {
     return {
-      datas: [
-        { "src": "https://vuejs.org/images/logo.png", "name": "Vue" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/6/61/Java_logo.png", "name": "Java" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg", "name": "React" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg", "name": "Sass" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg", "name": "Node.js" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg", "name": "Linux" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg", "name": "Python" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png", "name": "C#" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg", "name": "PostgreSQL" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png", "name": "Express.js" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/a/a3/.NET_Logo.svg", "name": ".NET" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", "name": "Apple" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png", "name": "Android" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/1/17/GraphQL_Logo.svg", "name": "GraphQL" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg", "name": "Angular" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg", "name": "Bootstrap" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png", "name": "SQL" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/4/49/Ruby_on_Rails_logo.svg", "name": "Ruby on Rails" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg", "name": "CSS3" },
-        { "src": "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png", "name": "JavaScript" }
-      ],
+      datas:
+       Stronge.data['skills']
+      ,
 
     };
   },

@@ -1,9 +1,11 @@
 <script setup>
+import * as Stronge from "@/base/Stronge.ts";
 
+const open=(url)=>window.open(url, '_blank');
 </script>
 
 <template>
-  <blog class="blog glass-effect">
+  <blog class="blog glass-effect" @click="open(Stronge.data['href'])">
 
 
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  stroke="currentColor" class="w-6 h-6">

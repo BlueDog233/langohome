@@ -6,22 +6,22 @@ import WorkItem from "@/components/item/WorkItem.vue";
 import SayItem from "@/components/item/SayItem.vue";
 import BlogItem from "@/components/item/BlogItem.vue";
 import SkillsItem from "@/components/item/SkillsItem.vue";
+import * as Stronge from "../base/Stronge.ts";
 </script>
 
 <template>
 
     <div class="text-info down">
-      <span class="title dance-1" style="display: inline-block">Hello</span>
-      <span class="span1">I am <span class="dance-2" style="color: gold;display: inline-block">Lango</span> , a coder</span>
-      <span class="span2">Hope everything I want , everything I can do,everything I can make.Become a super man</span>
+      <span class="title dance-1" style="display: inline-block">{{Stronge.data['title'][0]}}</span>
+      <span class="span1">{{Stronge.data['title'][1]}}<span class="dance-2" style="color: gold;display: inline-block">{{Stronge.data.title[2]}}</span>{{Stronge.data.title[3]}}</span>
+      <span class="span2">{{Stronge.data['title'][4]}}</span>
     </div>
     <ItemContainers class="down"/>
     <WorkCollection class="up">
-      <WorkItem></WorkItem>
+      <WorkItem v-for="x in Stronge.data['works']" :href=x.href :name="x.name" :src="x.src "></WorkItem>
     </WorkCollection>
     <div class="more" style="margin-top: 20px">
       <BlogItem></BlogItem>
-
       <SayItem></SayItem>
 
     </div>
@@ -33,6 +33,7 @@ import SkillsItem from "@/components/item/SkillsItem.vue";
 <style scoped>
 @media screen and (max-width: 800px) {
   .more{
+
     flex-direction: column;
 
   }

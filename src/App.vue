@@ -7,11 +7,12 @@ import HeadAchievement from "@/components/HeadAchievement.vue";
 import PhotoCollection from "@/components/PhotoCollection.vue";
 import {page} from "@/base/Stronge.ts";
 import HiddenCompoent from "@/components/HiddenCompoent.vue";
+import * as Stronge from "@/base/Stronge.ts";
+import axios from "axios";
 
 const navs = [new NavElement(null,'博客'), new NavElement(null,'小卖铺')]
 
 </script>
-
 <template>
 
   <div id="app">

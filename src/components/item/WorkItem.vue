@@ -1,13 +1,16 @@
 <script setup>
+const prop=defineProps(['src','href','name'])
 
 </script>
 
 <template>
-  <div>
+  <div @click="window.open(prop.href)">
     <button class="work">
-      TEST
+      {{prop.name}}
+
+      {{prop.src}}
     </button>
-    <span class="backdrop"></span>
+    <span class="backdrop" :style="{backgroundImage: 'url('+prop.href+')'}"></span>
   </div>
 </template>
 
@@ -21,8 +24,8 @@
   width: 90px;
   height: 90px;
   border-radius: 15px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   padding: 0 2px;
@@ -36,11 +39,13 @@
   position: absolute;
   width: 80px;
   height: 80px;
-  background-color: rgb(155, 155, 222);
+  background-position: center;
+  background-size: cover;
   z-index: -1;
   border-radius: 15px;
   transform: translateX(-105%) translateY(10%);
   transition: all ease-in-out 0.5s;
+  background: var(--coral-red);
 }
 
 .work:hover + .backdrop {
