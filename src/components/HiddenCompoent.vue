@@ -1,9 +1,12 @@
 <script setup>
 import {ref} from "vue";
 import * as Stronge from "@/base/Stronge.ts";
+import VueMarkdown from 'vue-markdown-render';
 
 const scale=ref(1)
 function handleWheel(event) {
+  if(Stronge.hidden.source)
+    return
   event.preventDefault(); // 阻止默认的滚动行为
   const delta = event.deltaY ? -event.deltaY : event.wheelDelta;
   const scaleFactor = 0.1; // 设定每次滚动的缩放因子
@@ -13,13 +16,22 @@ function handleWheel(event) {
     scale.value = Math.max(0.1, scale.value - scaleFactor); // 向下滚动缩小图片，不让其完全消失
   }
 }
+
 </script>
 
 <template>
-<div class="all" @wheel="handleWheel" v-if="Stronge.hidden.show" @click="Stronge.hidden.show=false">
-  <div class="content"  :style="{scale:scale}">
+<div class="all" @wheel="handleWheel" v-if="Stronge.hidden.show" @click="Stronge.hidden.show=false;">
+  <div class="content up"  :style="{scale:scale}">
     <div class="title">{{ Stronge.hidden.title }}</div>
     <img :src="Stronge.hidden.src"/>
+    <template v-if="Stronge.hidden.source">
+        <el-scrollbar max-height="80vh">
+          <div class="markdown-content">
+            <vue-markdown :source="Stronge.hidden.source" >
+            </vue-markdown>
+          </div>
+        </el-scrollbar>
+    </template>
   </div>
 </div>
 </template>
@@ -45,6 +57,7 @@ function handleWheel(event) {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  transition: all .5s ease;
 }
 .title{
   font-size: 2rem;

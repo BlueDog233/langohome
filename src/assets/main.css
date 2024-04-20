@@ -1,16 +1,93 @@
 @import './base.css';
 
 *{
-  color: var(--color-primary);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-weight: 400;
-  cursor: default;
 }
+
+.head,
 html{
-  width: 100vw;
-  height: 100vh;
+  width: 100% !important;
+  height: 100% !important;
   background: linear-gradient(to right,#def3f3,whitesmoke);
   font-family: 'Raleway', "ZCOOL QingKe HuangYou",华文彩云;
+}
+.markdown-content {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #333;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  color: #000;
+  margin-top: 24px;
+  font-weight: 600;
+}
+
+.markdown-content h1 { font-size: 28px; }
+.markdown-content h2 { font-size: 24px; }
+.markdown-content h3 { font-size: 20px; }
+.markdown-content h4 { font-size: 18px; }
+.markdown-content h5 { font-size: 16px; }
+.markdown-content h6 { font-size: 14px; }
+
+.markdown-content p {
+  margin-bottom: 10px;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-content li {
+  margin-bottom: 5px;
+}
+
+.markdown-content a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+.markdown-content code {
+  font-family: monospace;
+  background-color: #eee;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 90%;
+}
+
+.markdown-content pre {
+  background-color: #f4f4f4;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #ccc;
+  margin: 0;
+  padding-left: 16px;
+  color: #666;
+  font-style: italic;
 }

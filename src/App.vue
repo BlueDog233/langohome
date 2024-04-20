@@ -1,67 +1,56 @@
 <script setup>
 
-import NavCompoents from "@/components/NavCompoents.vue";
-import NavElement from "@/base/NavElement.ts";
-import HeadInfo from "@/components/HeadInfo.vue";
-import HeadAchievement from "@/components/HeadAchievement.vue";
-import PhotoCollection from "@/components/PhotoCollection.vue";
-import {page} from "@/base/Stronge.ts";
+
+import TemplateOne from "@/template/TemplateOne.vue";
+import TemplateZero from "@/template/TemplateZero.vue";
+import ToolsController from "@/components/modifytool/ToolsController.vue";
+import TemplatePage from "@/pages/NewPage.vue";
+import * as Stronge from '@/base/Stronge.ts'
 import HiddenCompoent from "@/components/HiddenCompoent.vue";
-import * as Stronge from "@/base/Stronge.ts";
-import axios from "axios";
-
-const navs = [new NavElement(null,'博客'), new NavElement(null,'小卖铺')]
-
+import {reactive} from "vue";
+const user=reactive(Stronge.userStroge.user)
 </script>
 <template>
 
   <div id="app">
-
-    <div class="head">
-      <div class="head-info">
-        <HeadInfo/>
-      </div>
-
-      <div class="head-achievement container " style="height: calc(100vh - 60px);border-radius: 30px">
-        <HeadAchievement v-if="page.page=='default'"/>
-        <PhotoCollection v-if="page.page=='photo'" />
+    <transition name="el-fade-in-linear">
+    <div class="bg" v-if="user.ispublished"></div>
+    </transition>
+    <div class="view">
+      <div class="title">模板名称---模板作者</div>
+      <div class="change-model" :style="{boxShadow:user.ispublished?'10px 10px 2rem 1px rgba(45, 208, 71, 0.62)':'10px 10px 2rem 1px rgba(0, 0, 0, 0.84)'}">
+        <TemplateOne></TemplateOne>
       </div>
     </div>
-    <div class="wrapper">
-    </div>
+    <ToolsController></ToolsController>
     <HiddenCompoent></HiddenCompoent>
-
   </div>
 
 </template>
 
 <style scoped>
-
-.head{
-  gap: 30px;
-  display: grid;
-  grid-template-columns: .3fr 1fr;
-  grid-auto-flow: column;
-  .head-info{
-    display: flex;
-  }
-  .head-achievement{
-    margin-top: 20px;
-  }
+.title{
+  width: 100%;
+  position: absolute;
+  text-align: center; /* Aligns text within the title box */
+  font-size: 2rem;
+  display: block;
+  color: rgba(49, 34, 34, 0.84);
+}
+.bg{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(122, 211, 115, 0.45);
 }
 
-@media screen and (max-width:  700px) {
-
-  .head{
-    gap: 30px;
-    display: flex;
-    flex-direction: column;
-    .head-info{
-      display: flex;
-    }
-    .head-achievement{
-      margin-top: 20px;
-    }
-  }
+.change-model{
+  transform: scale(.85);
+  ;
+  border-radius: 20px;
+}
+#app{
+  width: 100vw;
+  height: 100vh;
 }
 </style>

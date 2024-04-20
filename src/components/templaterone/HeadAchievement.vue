@@ -1,12 +1,12 @@
 <script setup>
 
-import ItemContainers from "@/components/ItemContainers.vue";
-import WorkCollection from "@/components/WorkCollection.vue";
-import WorkItem from "@/components/item/WorkItem.vue";
-import SayItem from "@/components/item/SayItem.vue";
-import BlogItem from "@/components/item/BlogItem.vue";
-import SkillsItem from "@/components/item/SkillsItem.vue";
-import * as Stronge from "../base/Stronge.ts";
+import ItemContainers from "@/components/templaterone/ItemContainers.vue";
+import WorkCollection from "@/components/templaterone/WorkCollection.vue";
+import WorkItem from "@/components/templaterone/item/WorkItem.vue";
+import SayItem from "@/components/templaterone/item/SayItem.vue";
+import BlogItem from "@/components/templaterone/item/BlogItem.vue";
+import SkillsItem from "@/components/templaterone/item/SkillsItem.vue";
+import * as Stronge from "../../base/Stronge.ts";
 </script>
 
 <template>

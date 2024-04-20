@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Stronge from "../../base/Stronge.ts";
+import * as Stronge from "../../../base/Stronge.ts";
 </script>
 
 <template>

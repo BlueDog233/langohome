@@ -1,6 +1,6 @@
 <script setup>
 
-import PhotoItem from "@/components/item/PhotoItem.vue";
+import PhotoItem from "@/components/templaterone/item/PhotoItem.vue";
 import * as Stronge from "@/base/Stronge.ts";
 
 console.log(Stronge.data['photos'][0].name)
