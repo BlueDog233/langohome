@@ -66,7 +66,7 @@ const set=defineModel();
           </template>
           MY INFO
         </el-button>
-        <el-button type="primary" @click="onSubmit">上传信息集</el-button>
+        <el-button type="info" @click="onSubmit">上传信息集</el-button>
         <div style="margin-bottom: 30px"></div>
       </template>
       <MainSetting v-model="infomode" v-if="!infomode" class="drdc" ></MainSetting>
@@ -89,7 +89,7 @@ const set=defineModel();
 
       <template #footer v-if="!infomode">
         <el-form-item style="display: flex">
-          <el-button type="primary" @click="onSubmit">提交</el-button>
+          <el-button type="info" @click="onSubmit">提交</el-button>
           <el-button type="danger" @click="set=!set">取消</el-button>
           <el-button @click="reserveInfo();Stronge.sendContent('','',test.myinfoD)" style=";display: inline-block">
             <template #icon>
@@ -105,14 +105,9 @@ const set=defineModel();
 
 <style scoped>
 .normal{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 10fr 1fr;
-  grid-template-areas:
-    ". . ."
-    ". main ."
-    ". . .";
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .info{
   display: grid;

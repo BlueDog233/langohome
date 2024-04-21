@@ -7,7 +7,7 @@
     --color-accent: #66B2FF;  /* Lighter blue for hover effects and highlights */
     --color-background: rgb(218, 232, 241);  /* Very light blue, almost white, for backgrounds */
     --color-foreground: #023e8a;  /* Navy blue for primary text to ensure readability */
-    --color-light-gray: #def3f3;  /* Light gray for secondary backgrounds or sections */
+    --color-light-gray: #c7cece;  /* Light gray for secondary backgrounds or sections */
     --color-dark-gray: #343a40;  /* Charcoal gray for footer or less prominent elements */
     --color-border: #dee2e6;  /* Soft gray for borders and underlines */
     --coral-red: #FF3E3E;
@@ -15,7 +15,10 @@
     --deep-sky-blue: #00B7EB;
     --charcoal-grey: #36454F;
     --mellow-apricot: #FABD77;
-
+    --el-color-info: var(--bright-gold);
+    --el-color-info-dark-2: var(--bright-gold);
+    --el-color-info-light-9: var(--bright-gold);
+    --el-color-info-light-3: #fcbc18;
 }
 .dance-1{
     transition: all .6s ease;

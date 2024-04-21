@@ -8,6 +8,7 @@ import TemplatePage from "@/pages/NewPage.vue";
 import * as Stronge from '@/base/Stronge.ts'
 import HiddenCompoent from "@/components/HiddenCompoent.vue";
 import {reactive} from "vue";
+import Terminal from "@/components/modifytool/Terminal.vue";
 const user=reactive(Stronge.userStroge.user)
 </script>
 <template>
@@ -24,6 +25,7 @@ const user=reactive(Stronge.userStroge.user)
     </div>
     <ToolsController></ToolsController>
     <HiddenCompoent></HiddenCompoent>
+    <Terminal></Terminal>
   </div>
 
 </template>

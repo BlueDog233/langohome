@@ -3,6 +3,7 @@
 import * as Stronge from "@/base/Stronge.ts";
 import TemplatePage from "@/pages/NewPage.vue";
 import {ref} from "vue";
+import ChooseTemplate from '@/components/modifytool/pages/ChooseTemplate.vue'
 const isChangeMode=ref(false)
 </script>
 
@@ -21,7 +22,9 @@ move_group
     </a>
     <div class="tooltip">切换模板</div>
   </li>
-    <TemplatePage v-model="isChangeMode" x="0" y="100"> </TemplatePage>
+    <TemplatePage v-model="isChangeMode" x="0" y="100">
+      <ChooseTemplate></ChooseTemplate>
+    </TemplatePage>
 
 </template>
 

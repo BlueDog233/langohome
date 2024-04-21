@@ -19,7 +19,7 @@ const form=reactive(userStroge.user)
 </script>
 
 <template>
-  <div>
+  <div style="width: 60vw">
     <el-form class="form" ref="form" :model="form" label-width="60px" >
       <el-form-item label="用户名" >
         <el-input v-model="form.username"></el-input>

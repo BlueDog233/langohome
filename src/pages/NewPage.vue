@@ -39,7 +39,7 @@ const prop=defineProps(['y','x'])
 .bg{
   width: 700%;
   height: 200%;
-  background-color: rgba(90, 100, 66, 0.55);
+  background: repeating-linear-gradient(45deg, rgba(146, 201, 199, 0.71), rgba(146, 201, 195, 0.69) 20px, rgba(179, 220, 224, 0.7) 20px, #b3e0dc 40px);
   transition: all .3s ease;
 }
 .v-leave-active .bg,
