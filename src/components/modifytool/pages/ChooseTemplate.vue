@@ -95,14 +95,6 @@
 .tab--3:checked ~ .indicator {
   left: calc(130px * 2 + 2px);
 }
-.el-card{
-  overflow: scroll;
-  margin: 0;
-}
-
-.el-card::-webkit-scrollbar{
-  overflow: visible;
-}
 
 </style>
 
@@ -113,36 +105,39 @@ import DetailInfo from "@/components/modifytool/pages/choosepages/DetailInfo.vue
 import TemplateList from "@/components/modifytool/pages/choosepages/TemplateList.vue";
 import CreatorCenter from "@/components/modifytool/pages/CreatorCenter.vue";
 import MyStars from "@/components/modifytool/pages/MyStars.vue";
-const selec=ref('template')
+import * as store from '@/base/store.ts'
+
 
 </script>
 
 <template>
-  <el-scrollbar max-height="80vh" >
     <el-card class="el-card" body-style="display: flex;  flex-direction: column;">
       <template #header>
         <div class="tab-container">
-          <input type="radio" name="tab" id="tab1" value="template" v-model="selec" class="tab tab--1"/>
+          <input type="radio" name="tab" id="tab1" value="template" v-model="store.singleData.view.chooseTemplate.select" class="tab tab--1"/>
           <label class="tab_label" for="tab1">模板广场</label>
-          <input type="radio" name="tab" id="tab2" value="create" v-model="selec" class="tab tab--2"/>
+          <input type="radio" name="tab" id="tab2" value="create" v-model="store.singleData.view.chooseTemplate.select" class="tab tab--2"/>
           <label class="tab_label" for="tab2">创作中心</label>
-          <input type="radio" name="tab" id="tab3" value="stars" v-model="selec" class="tab tab--3"/>
+          <input type="radio" name="tab" id="tab3" value="stars" v-model="store.singleData.view.chooseTemplate.select" class="tab tab--3"/>
           <label class="tab_label" for="tab3">我的收藏</label>
           <div class="indicator"></div>
         </div>
       </template>
 
       <template #default>
+        <el-scrollbar max-height="80vh" >
+
         <div style="flex-grow:1"></div>
 
-        <div class="main" v-if="selec=='template'">
-          <DetailInfo></DetailInfo>
+        <div class="main" v-if="store.singleData.view.chooseTemplate.select=='template'">
+          <DetailInfo ></DetailInfo>
           <TemplateList></TemplateList>
         </div>
-        <CreatorCenter v-else-if="selec=='create'" style="flex-grow: 1"></CreatorCenter>
-        <MyStars v-else-if="selec=='stars'" style="flex-grow: 1"></MyStars>
+        <CreatorCenter v-else-if="store.singleData.view.chooseTemplate.select=='create'" style="flex-grow: 1"></CreatorCenter>
+        <MyStars v-else-if="store.singleData.view.chooseTemplate.select=='stars'" style="flex-grow: 1"></MyStars>
+        </el-scrollbar>
+
       </template>
 
     </el-card>
-  </el-scrollbar>
 </template>

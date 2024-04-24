@@ -1,12 +1,13 @@
 <script setup>
+import * as viewutil from "@/base/util/viewutil.ts";
+
 const props=defineProps(['describe','src'])
 
-import * as Stronge from "@/base/Stronge.ts";
 
 </script>
 
 <template>
-<div class="img-container up" @click="Stronge.sendContent(props.describe,props.src)">
+<div class="img-container up" @click="viewutil.sendContent(props.describe,props.src)">
   <img :src="props.src"/>
   <div class="content">{{props.describe}}</div>
 </div>

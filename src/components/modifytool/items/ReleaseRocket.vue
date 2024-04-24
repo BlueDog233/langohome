@@ -1,12 +1,14 @@
 <script setup>
 
-import * as Stronge from "@/base/Stronge.ts";
 import {ref} from "vue";
-const ispublished=ref(Stronge.userStroge.user.ispublished)
+import * as store from "@/base/store.ts";
+import {refreshUser, reservePublish} from "@/base/request/requests.ts";
+import {exportData} from "@/base/model/dto-model.ts";
+
 
 const releaseOrNo=()=>{
-  Stronge.userStroge.user.ispublished=!Stronge.userStroge.user.ispublished
-  ispublished.value=Stronge.userStroge.user.ispublished
+  reservePublish()
+
 }
 </script>
 
@@ -16,7 +18,7 @@ const releaseOrNo=()=>{
         aria-label="launch"
         data-social="launch"
         class=""
-        :style="{backgroundColor: !ispublished?'rgba(211, 17, 52, 0.7)':'rgba(103, 231, 158, 0.71)'}"
+        :style="{backgroundColor: !store.singleData.user.isPublished?'rgba(211, 17, 52, 0.7)':'rgba(103, 231, 158, 0.71)'}"
         @click="releaseOrNo"
     >
       <div class="filled"></div>
@@ -24,7 +26,7 @@ const releaseOrNo=()=>{
 rocket_launch
 </span>
     </a>
-    <div class="tooltip">{{ !ispublished?'点击发布':'取消发布' }}</div>
+    <div class="tooltip">{{ !store.singleData.user.isPublished?'点击发布':'取消发布' }}</div>
   </li>
 </template>
 

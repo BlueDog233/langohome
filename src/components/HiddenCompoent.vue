@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import * as Stronge from "@/base/Stronge.ts";
 import VueMarkdown from 'vue-markdown-render';
+import * as store from "@/base/store.ts";
 
 const scale=ref(1)
 function handleWheel(event) {
@@ -20,14 +21,14 @@ function handleWheel(event) {
 </script>
 
 <template>
-<div class="all" @wheel="handleWheel" v-if="Stronge.hidden.show" @click="Stronge.hidden.show=false;">
+<div class="all" @wheel="handleWheel" v-if="store.singleData.view.multi_mediaDisplay.isVisible" @click="store.singleData.view.multi_mediaDisplay.isVisible=false;">
   <div class="content up"  :style="{scale:scale}">
-    <div class="title">{{ Stronge.hidden.title }}</div>
-    <img :src="Stronge.hidden.src"/>
-    <template v-if="Stronge.hidden.source">
+    <div class="title">{{ store.singleData.view.multi_mediaDisplay.title }}</div>
+    <img :src="store.singleData.view.multi_mediaDisplay.photoUrl"/>
+    <template v-if="store.singleData.view.multi_mediaDisplay.markdownStr">
         <el-scrollbar max-height="80vh">
           <div class="markdown-content">
-            <vue-markdown :source="Stronge.hidden.source" >
+            <vue-markdown :source="store.singleData.view.multi_mediaDisplay.markdownStr" >
             </vue-markdown>
           </div>
         </el-scrollbar>

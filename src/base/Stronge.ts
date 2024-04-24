@@ -18,13 +18,7 @@ const hidden=reactive({
     src:'https://photofortypora.oss-cn-beijing.aliyuncs.com/image-20240415004543474.png',
     source:'aa'
 })
-function sendContent(title,src,source?:string){
-    hidden.title=title
-    hidden.src=src
-    hidden.source=source
 
-    hidden.show=true
-}
 var data=JSON.parse('{\n' +
     '  "title": [\n' +
     '    "Hi, I\'m Li Hua",\n' +
@@ -88,7 +82,6 @@ Object.keys(data['label']).forEach((key)=>{
 export{
     page,
     content,
-    sendContent,
     hidden,
     data,
     userStroge

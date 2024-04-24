@@ -4,43 +4,52 @@ import {reactive, ref} from 'vue';
 import MainSetting from "@/components/modifytool/pages/setpages/MainSetting.vue";
 import {ElButton, ElForm, ElFormItem, ElInput} from "element-plus";
 import PhotoSetting from "@/components/PhotoSetting.vue";
-
-import * as Stronge from "@/base/Stronge.ts";
-import PhotoItem from "@/components/templaterone/item/PhotoItem.vue";
 import VueMarkdown from 'vue-markdown-render';
 import * as test from "@/base/test.ts";
-import {userStroge} from "@/base/Stronge.ts";
 import PhotoA from "@/components/modifytool/pages/setpages/PhotoA.vue";
 
-const infomode=ref(false)
+import * as store from "@/base/store.ts";
+import * as viewutil from "@/base/util/viewutil.ts";
+import {exportData} from "@/base/model/dto-model.ts";
+import {refreshUser, saveInfo} from "@/base/request/requests.ts";
 
 
-
-
+const onCommit=()=>{
+  refreshUser(exportData(mainset.value.form))
+}
 const reserveInfo = () => {
-  infomode.value=!infomode.value
+  store.singleData.view.settingTemplate.infomode=!store.singleData.view.settingTemplate.infomode
 };
-
+//todo 图片上传
 const form=reactive({
   personilty:'一般',
   describe:'',
   url:''
 })
+function uploadInfo(){
+  saveInfo(form).then(()=>{
+    form.personilty='一般'
+    form.describe=''
+    form.url=''
+  })
+
+}
+const mainset=ref()
+
 const set=defineModel();
 </script>
 
 <template>
-<div :class="['settings',infomode?'info':'normal']">
+<div :class="['settings',store.singleData.view.settingTemplate.infomode?'info':'normal']">
 
-    <template v-if="infomode">
+    <template v-if="store.singleData.view.settingTemplate.infomode">
       <el-card class="form left toleft" style="grid-area: left;">
         <template #header>
           图片集
         </template>
         <el-scrollbar>
           <div class="photos up">
-            <PhotoA v-for="x in Stronge.data['photos']" :src="x.src" :describe="x.describe"></PhotoA>
-
+            <PhotoA v-for="x in store.singleData.user.photoData" :src="x.url" :describe="x.describe"></PhotoA>
           </div>
         </el-scrollbar>
       </el-card>
@@ -50,13 +59,13 @@ const set=defineModel();
         </template>
         <el-scrollbar height="80vh">
           <div class="markdown-content" style="border: none;background-color: inherit">
-            <vue-markdown :source="test.str"></vue-markdown>
+            <vue-markdown :source="store.singleData.user.textData"></vue-markdown>
           </div>
         </el-scrollbar>
       </el-card>
     </template>
   <el-card class="form main">
-      <template #header v-if="infomode">
+      <template #header v-if="store.singleData.view.settingTemplate.infomode">
         <el-button @click="reserveInfo" style=";display: inline-block">
           <template #icon>
             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Red Hat</title>
@@ -66,10 +75,10 @@ const set=defineModel();
           </template>
           MY INFO
         </el-button>
-        <el-button type="info" @click="onSubmit">上传信息集</el-button>
+        <el-button type="info" @click="onCommit">上传信息集</el-button>
         <div style="margin-bottom: 30px"></div>
       </template>
-      <MainSetting v-model="infomode" v-if="!infomode" class="drdc" ></MainSetting>
+      <MainSetting v-model="store.singleData.view.settingTemplate.infomode" ref="mainset" v-if="!store.singleData.view.settingTemplate.infomode"  class="drdc" :user="store.singleData.user"></MainSetting>
 
       <template v-else>
         <el-form class="form" :model="form" label-width="70px">
@@ -87,11 +96,11 @@ const set=defineModel();
         </el-form>
       </template>
 
-      <template #footer v-if="!infomode">
+      <template #footer v-if="!store.singleData.view.settingTemplate.infomode">
         <el-form-item style="display: flex">
           <el-button type="info" @click="onSubmit">提交</el-button>
           <el-button type="danger" @click="set=!set">取消</el-button>
-          <el-button @click="reserveInfo();Stronge.sendContent('','',test.myinfoD)" style=";display: inline-block">
+          <el-button @click="reserveInfo();viewutil.sendContent('','',test.myinfoD)" style=";display: inline-block">
             <template #icon>
               <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Red Hat</title><path d="M16.009 13.386c1.577 0 3.86-.326 3.86-2.202a1.765 1.765 0 0 0-.04-.431l-.94-4.08c-.216-.898-.406-1.305-1.982-2.093-1.223-.625-3.888-1.658-4.676-1.658-.733 0-.947.946-1.822.946-.842 0-1.467-.706-2.255-.706-.757 0-1.25.515-1.63 1.576 0 0-1.06 2.99-1.197 3.424a.81.81 0 0 0-.028.245c0 1.162 4.577 4.974 10.71 4.974m4.101-1.435c.218 1.032.218 1.14.218 1.277 0 1.765-1.984 2.745-4.593 2.745-5.895.004-11.06-3.451-11.06-5.734a2.326 2.326 0 0 1 .19-.925C2.746 9.415 0 9.794 0 12.217c0 3.969 9.405 8.861 16.851 8.861 5.71 0 7.149-2.582 7.149-4.62 0-1.605-1.387-3.425-3.887-4.512"/></svg>
             </template>

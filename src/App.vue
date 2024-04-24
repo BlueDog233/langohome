@@ -8,19 +8,18 @@ import TemplatePage from "@/pages/NewPage.vue";
 import * as Stronge from '@/base/Stronge.ts'
 import HiddenCompoent from "@/components/HiddenCompoent.vue";
 import {reactive} from "vue";
+import * as store from '@/base/store.ts'
 import Terminal from "@/components/modifytool/Terminal.vue";
-const user=reactive(Stronge.userStroge.user)
+
 </script>
 <template>
-
   <div id="app">
     <transition name="el-fade-in-linear">
-    <div class="bg" v-if="user.ispublished"></div>
+    <div class="bg" v-if="store.singleData.user.isPublished"></div>
     </transition>
     <div class="view">
-      <div class="title">模板名称---模板作者</div>
-      <div class="change-model" :style="{boxShadow:user.ispublished?'10px 10px 2rem 1px rgba(45, 208, 71, 0.62)':'10px 10px 2rem 1px rgba(0, 0, 0, 0.84)'}">
-        <TemplateOne></TemplateOne>
+      <div class="change-model" :style="{boxShadow:store.singleData.user.isPublished?'10px 10px 2rem 1px rgba(45, 208, 71, 0.62)':'10px 10px 2rem 1px rgba(0, 0, 0, 0.84)'}" >
+        <iframe class="new" :srcdoc="store.singleData.user.html"></iframe>
       </div>
     </div>
     <ToolsController></ToolsController>
@@ -31,6 +30,15 @@ const user=reactive(Stronge.userStroge.user)
 </template>
 
 <style scoped>
+.new{
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.change-model{
+  width: 100vw;
+  height: 100vh;
+}
 .title{
   width: 100%;
   position: absolute;

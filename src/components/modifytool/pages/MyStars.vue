@@ -1,13 +1,15 @@
 <script setup>
 
 import DetailInfo2 from "@/components/modifytool/pages/choosepages/DetailInfo2.vue";
+import * as store from "@/base/store.ts";
 </script>
 
 <template>
 <div class="stars" >
   <el-carousel  :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="item in 6" :key="item">
-      <h3 text="2xl" justify="center">{{ item }}</h3>
+    <el-carousel-item v-for="item in store.singleData.user.photoData" :key="item">
+      <img :src="item.url" />
+
     </el-carousel-item>
   </el-carousel>
   <DetailInfo2></DetailInfo2>

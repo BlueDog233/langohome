@@ -1,35 +1,13 @@
 <script setup>
 
 import ItemPhoto from "@/components/modifytool/pages/choosepages/ItemPhoto.vue";
+import * as store from "@/base/store.ts";
 </script>
 
 <template>
   <el-scrollbar height="70vh">
     <div class="list">
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
-      <ItemPhoto></ItemPhoto>
+      <ItemPhoto v-for="template in store.templates" :template="template" @click="store.singleData.view.chooseTemplate.choose_template=template"></ItemPhoto>
     </div>
   </el-scrollbar>
 </template>

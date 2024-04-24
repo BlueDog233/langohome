@@ -3,12 +3,13 @@
 import {ref} from "vue";
 import NewPage from "@/pages/NewPage.vue";
 import SettingPage from "@/components/modifytool/pages/SettingPage.vue";
+import * as store from "@/base/store.ts";
 
-const userSet=ref(false)
+
 </script>
 
 <template>
-  <li class="icon-content"  @click="userSet=!userSet" :style="{zIndex: userSet?'30':'0'}">
+  <li class="icon-content"  @click="store.singleData.view.settingTemplate.isVisible=!store.singleData.view.settingTemplate.isVisible" :style="{zIndex: store.singleData.view.settingTemplate.isVisible?'30':'0'}">
     <a
         aria-label="usersetting"
         data-social="usersetting"
@@ -20,8 +21,8 @@ manage_accounts
     </a>
     <div class="tooltip">用户设置</div>
   </li>
-  <NewPage v-model="userSet" x="0" y="70">
-    <SettingPage v-model="userSet"></SettingPage>
+  <NewPage v-model="store.singleData.view.settingTemplate.isVisible" x="0" y="70">
+    <SettingPage v-model="store.singleData.view.settingTemplate.isVisible"></SettingPage>
   </NewPage>
 </template>
 

@@ -1,4 +1,5 @@
 <template>
+  <!--todo 图片url修改-->
   <el-upload
       class="avatar-uploader"
       action="http://localhost:8000/api/file/img"

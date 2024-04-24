@@ -1,5 +1,7 @@
 <script setup>
 import {ref} from "vue";
+import * as store from "@/base/store.ts";
+import * as model from "@/base/model/aimessage-model.ts"
 
 const x=ref(50)
 const y=ref(50)
@@ -46,25 +48,26 @@ document.addEventListener("mousemove",mouse)
 const isReal=ref(false)
 const input=ref()
 const inputText=ref("")
+const messageTypeToColor = {
+  1: '#06cb06', // Green for success
+  2: '#FF0000', // Red for failure
+  3: '#5b5656', // Deep sky blue for info
+  4: '#FFA500'  // Orange for warning
+};
 </script>
 
 <template>
 <div :class="['terminal',isReal&&'real']" ref="terminal" @click="input.focus()" @mousedown.alt="isStart=!isStart"  @dblclick="isReal=!isReal;isStart=false" :style="isReal?{left: 'calc('+x+'px - 200px)',top: 'calc('+y+'px - 200px)'}:{left: 'calc('+x+'px - 30px)',top: 'calc('+y+'px - 30px)'}">
-<span class="material-symbols-outlined" style="scale: 2">
+<span class="material-symbols-outlined" style="scale: 2;color: #af2c45">
 terminal
 </span>
   <template v-if="isReal">
     <div style="display: flex;flex-direction: column">
       <el-scrollbar height="230px">
-        <p class="user">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p class="system">aaaa</p>
-        <p class="system">aaaa</p>
-        <p class="system">aaaa</p>
-        <p class="system">aaaa</p>
-
+        <p v-for="message in store.singleData.view.message2Ai.data" :class="message.from.toLowerCase()" :style="{color: message.from=='System'&&messageTypeToColor[(message).type]}">{{message.message}}</p>
       </el-scrollbar>
       <el-scrollbar height="70px" style="border-top: 1px solid black">
-        <el-input type="textarea"  v-model="inputText" ref="input" class="input" autosize  style="width: 100%;--el-input-hover-border: transparent;--el-input-focus-border-color: transparent;--el-input-border-color: transparent;--el-input-bg-color: transparent;width: 100%;height: 70px;border-radius: 10px;border: none;background-color: transparent"></el-input>
+        <el-input type="textarea"  v-model="inputText" ref="input"  autosize  style="width: 100%;--el-input-hover-border: transparent;--el-input-focus-border-color: transparent;--el-input-border-color: transparent;--el-input-bg-color: transparent;width: 100%;height: 70px;border-radius: 10px;border: none;background-color: transparent" class="ipt"></el-input>
     </el-scrollbar>
     </div>
   </template>
@@ -105,7 +108,13 @@ p{
   content: 'system >';
   color: #fff;
 }
+.el-textarea__inner:active,
+.el-textarea__inner:hover {
+  box-shadow: none !important;
+}
+
 .terminal{
+  caret-color: transparent;
   display: inline-block;
   text-align: center;
   line-height: 70px;
@@ -114,7 +123,7 @@ p{
   height: 60px;
   z-index: 20;
   border-radius: 50%;
-  background-color: #bdfd06;
+  background-color: rgba(52, 58, 64, 0.62);
   transition: all .5s ease;
   cursor: pointer;
 }
@@ -125,6 +134,7 @@ p{
   background-color: rgba(35, 32, 32, 0.8);
   color: #9fff11;
 }
+
 .terminal:active{
   background-color: rgba(55, 62, 65, 0.62);
   color: rgba(171, 0, 0, 0.87);
