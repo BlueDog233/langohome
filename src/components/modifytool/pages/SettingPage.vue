@@ -15,6 +15,7 @@ import {refreshUser, saveInfo} from "@/base/request/requests.ts";
 
 
 const onCommit=()=>{
+  console.log(mainset.value.form)
   refreshUser(exportData(mainset.value.form))
 }
 const reserveInfo = () => {
@@ -27,12 +28,19 @@ const form=reactive({
   url:''
 })
 function uploadInfo(){
-  saveInfo(form).then(()=>{
-    form.personilty='一般'
-    form.describe=''
-    form.url=''
+  saveInfo(form).then((res)=>{
+    store.singleData.user.textData=res.data
   })
+  if(form.url!=''){
+    store.singleData.user.photoData.push({
+        url:form.url,
+      describe:form.describe
+    })
+  }
 
+  form.personilty='一般'
+  form.describe=''
+  form.url=''
 }
 const mainset=ref()
 
@@ -75,7 +83,7 @@ const set=defineModel();
           </template>
           MY INFO
         </el-button>
-        <el-button type="info" @click="onCommit">上传信息集</el-button>
+        <el-button type="info" @click="uploadInfo(form)">上传信息集</el-button>
         <div style="margin-bottom: 30px"></div>
       </template>
       <MainSetting v-model="store.singleData.view.settingTemplate.infomode" ref="mainset" v-if="!store.singleData.view.settingTemplate.infomode"  class="drdc" :user="store.singleData.user"></MainSetting>
@@ -98,7 +106,7 @@ const set=defineModel();
 
       <template #footer v-if="!store.singleData.view.settingTemplate.infomode">
         <el-form-item style="display: flex">
-          <el-button type="info" @click="onSubmit">提交</el-button>
+          <el-button type="info" @click="onCommit">提交</el-button>
           <el-button type="danger" @click="set=!set">取消</el-button>
           <el-button @click="reserveInfo();viewutil.sendContent('','',test.myinfoD)" style=";display: inline-block">
             <template #icon>

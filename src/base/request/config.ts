@@ -1,11 +1,11 @@
 import axios from "axios";
 import {refreshData} from "../model/dto-model.ts";
 
-export const BASE_URL = '/api';
+export const BASE_URL = 'http://localhost:8000/api';
 export const TIMEOUT = 3000;
 class Request {
     instance
-    constructor(baseURL, timeout = 10000) {
+    constructor(baseURL, timeout = 3000) {
         this.instance = axios.create({
             baseURL,
             timeout,
@@ -14,7 +14,8 @@ class Request {
         this.instance.interceptors.request.use(
             config => {
                 // 当前路由不是登录页时，添加token
-                let token = sessionStorage.getItem('token');
+                let token = localStorage.getItem('token');
+                console.log(token)
                 if (token && config.url !== '/login') {
                     config.headers.token = token;
                 }
@@ -74,3 +75,4 @@ class Request {
     }
 }
 export default new Request(BASE_URL,TIMEOUT)
+export const AIRequest=new Request(BASE_URL,20000)

@@ -21,7 +21,7 @@ const form=reactive(props.user)
         <el-input v-model="form.style" type="textarea" placeholder="简约,言简意赅,尽量使用成语总结,给人一种大师风范"></el-input>
       </el-form-item>
       <el-form-item label="设置头像">
-        <PhotoSetting v-model="form.avator"></PhotoSetting>
+        <PhotoSetting v-model="form.avatar"></PhotoSetting>
       </el-form-item>
     </el-form>
 

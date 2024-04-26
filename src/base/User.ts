@@ -4,7 +4,7 @@ export default class User {
     public isbaned: number;
     public ispublished: number = 0;
     public html: string;
-    public avator: string;
+    public avatar: string;
     public username:string;
     public email:string;
     public style:string;
@@ -15,7 +15,7 @@ export default class User {
         this.id = 0;
         this.isbaned = 0;
         this.html = '';
-        this.avator = '';
+        this.avatar = '';
         this.style='简约,言简意赅,尽量使用成语总结,给人一种大师风范';
     }
 }

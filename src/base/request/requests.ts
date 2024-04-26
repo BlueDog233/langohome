@@ -1,7 +1,8 @@
-import Request from './config.ts'
+import Request, {AIRequest, BASE_URL} from './config.ts'
 import User from "../User.ts";
 import {Photo, Template} from "../model/model.ts";
 import {AIRequestDTO, LoginDTO, RegisterDTO} from "../model/dto-model.ts";
+import axios from "axios";
 export const reservePublish = () =>{
     return Request.post({
         url: '/user/publish',
@@ -27,18 +28,19 @@ export const getUser=()=>{
 export const saveTemplate=(template:Template)=>{
     return Request.post({
         url:'/template/upload',
-        data:template
+        data:template,
     })
 }
 export const saveInfo=(info:Photo)=>{
-    return Request.post({
+    return AIRequest.post({
         url:'/user/info',
-        data:info
+        data:info,
+
     })
 }
 export const registe=(registerDTO:RegisterDTO)=>{
     return Request.post({
-        url:'/user/registe',
+        url:'/user/register',
         data:registerDTO
     })
 }
@@ -61,4 +63,15 @@ export const aiCommand=(aiDTO:AIRequestDTO)=>{
         url:'/user/ai',
         data:aiDTO
     })
+}
+export const getHtml=(username:string,mountedEle:string)=>{
+    axios.get(BASE_URL+'/visit/'+username)
+        .then(response => {
+            // 将获取到的HTML内容插入到页面中的div中
+            document.getElementById(mountedEle).innerHTML = response.data;
+        })
+        .catch(error => {
+            // 处理请求失败的情况
+            console.error('Error fetching HTML:', error);
+        });
 }
