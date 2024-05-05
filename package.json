@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.6.8",
     "element-plus": "^2.7.1",
+    "jszip": "^3.10.1",
     "veloxi": "^0.0.4",
     "vue": "^3.4.21",
     "vue-markdown-render": "^2.1.1",

@@ -2,12 +2,15 @@
 
 import ItemPhoto from "@/components/modifytool/pages/choosepages/ItemPhoto.vue";
 import * as store from "@/base/store.ts";
+import {onBeforeMount, onMounted} from "vue";
+import {getTemplates} from "@/base/request/requests.ts";
+
 </script>
 
 <template>
   <el-scrollbar height="70vh">
     <div class="list">
-      <ItemPhoto v-for="template in store.templates" :template="template" @click="store.singleData.view.chooseTemplate.choose_template=template"></ItemPhoto>
+      <ItemPhoto :key="store.singleData.view.chooseTemplate.templates" v-for="template in store.singleData.view.chooseTemplate.templates" :template="template" @click="store.singleData.view.chooseTemplate.choose_template=template"></ItemPhoto>
     </div>
   </el-scrollbar>
 </template>

@@ -23,33 +23,19 @@ const userData: User = reactive({
     json: '{"key":"value"}'
 });
 
-const templates: Template[] = reactive([
-    {
-        photos: [
-            {url: 'https://via.placeholder.com/600/24f355', describe: '测试图片1'},
-            {url: 'https://via.placeholder.com/600/d32776', describe: '测试图片2'},
-            {url: 'https://via.placeholder.com/600/33f877', describe: '测试图片5'},
-            {url: 'https://via.placeholder.com/600/77d981', describe: '测试图片6'},
-            {url: 'https://via.placeholder.com/600/25d876', describe: '测试图片7'}
-        ],
-        author: '模板作者',
-        describe: '这是一个测试模板',
-        starcount: 5,
-        name: '测试模板1'
-    },
-    {
-        photos: [
-            {url: 'https://via.placeholder.com/600/f66b97', describe: '测试图片3'},
-            {url: 'https://via.placeholder.com/600/56a8c2', describe: '测试图片4'},
-            {url: 'https://via.placeholder.com/600/92f234', describe: '测试图片8'},
-            {url: 'https://via.placeholder.com/600/56f298', describe: '测试图片9'},
-            {url: 'https://via.placeholder.com/600/92c955', describe: '测试图片10'}
-        ],
-        author: '梨花',
-        describe: '这是第二个测试模板',
-        starcount: 120,
-        name: '测试模板2'
-    }
+let templates: Template[] = reactive([{
+    photos: [
+        {url: 'https://via.placeholder.com/600/24f355', describe: '测试图片1'},
+        {url: 'https://via.placeholder.com/600/d32776', describe: '测试图片2'},
+        {url: 'https://via.placeholder.com/600/33f877', describe: '测试图片5'},
+        {url: 'https://via.placeholder.com/600/77d981', describe: '测试图片6'},
+        {url: 'https://via.placeholder.com/600/25d876', describe: '测试图片7'}
+    ],
+    author: '模板作者',
+    describe: '这是一个测试模板',
+    starcount: 5,
+    name: '测试模板1'
+}
 ]);
 
 const singleData: SingleAll = reactive({

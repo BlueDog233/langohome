@@ -10,7 +10,8 @@ export interface Photo {
 }
 
 export interface Template {
-    photos: Photo[];
+    id:number;
+    photo: Photo[];
     author: string;
     describe: string;
     starcount: number;

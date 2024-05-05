@@ -3,6 +3,9 @@ import User from "../User.ts";
 import {Photo, Template} from "../model/model.ts";
 import {AIRequestDTO, LoginDTO, RegisterDTO} from "../model/dto-model.ts";
 import axios from "axios";
+import { encode } from 'querystring';
+import {ElMessage, ElNotification} from "element-plus";
+import * as store from "../store.ts";
 export const reservePublish = () =>{
     return Request.post({
         url: '/user/publish',
@@ -12,12 +15,20 @@ export const reservePublish = () =>{
 export const refreshUser = (user:User) =>{ //更新用户的信息
     return Request.post({
         url: '/user/upload',
-        data: user
+        data: user,
+
+    }).then(res=>{
+        if(res.code==1){
+            ElMessage({
+                message: "用户信息已更新",
+                type: 'success'
+            })
+        }
     })
 }
 export const getTemplates=()=>{
-    return Request.post({
-        url: '/template/get',
+    return Request.get({
+        url: '/template/queryall',
     })
 }
 export const getUser=()=>{
@@ -32,12 +43,12 @@ export const saveTemplate=(template:Template)=>{
     })
 }
 export const saveInfo=(info:Photo)=>{
-    return AIRequest.post({
+    return Request.post({
         url:'/user/info',
         data:info,
-
     })
 }
+
 export const registe=(registerDTO:RegisterDTO)=>{
     return Request.post({
         url:'/user/register',
@@ -53,9 +64,19 @@ export const login=(loginDTO:LoginDTO)=>{
 
 
 export const useTemplate=(template:Template)=>{
-    return Request.post({
-        url:'/user/usetemplate',
-        data:template
+
+    return AIRequest.postAI({
+        url:`/user/use${template.id}`,
+    },"模板使用任务").then((res)=>{
+        location.reload()
+        return res
+    })
+}
+export const mixedai=()=>{
+    return AIRequest.postAI({
+        url:`/user/aimix`,
+    },"AI混合数据").then(res=>{
+        store.singleData.user.textData=res.data
     })
 }
 export const aiCommand=(aiDTO:AIRequestDTO)=>{
@@ -65,13 +86,18 @@ export const aiCommand=(aiDTO:AIRequestDTO)=>{
     })
 }
 export const getHtml=(username:string,mountedEle:string)=>{
-    axios.get(BASE_URL+'/visit/'+username)
-        .then(response => {
-            // 将获取到的HTML内容插入到页面中的div中
-            document.getElementById(mountedEle).innerHTML = response.data;
-        })
-        .catch(error => {
-            // 处理请求失败的情况
-            console.error('Error fetching HTML:', error);
-        });
+    return Request.get({
+        url:'/visit/'+username,
+
+    }).then((response)=>{
+        if (typeof response === "string") {
+            document.getElementById(mountedEle).innerHTML = response;
+        }
+    })
+}
+export const uploadTemplate=(form)=>{
+    return AIRequest.postAI({
+        data:form,
+        url:'/template/upload'
+    },"模板上传任务")
 }

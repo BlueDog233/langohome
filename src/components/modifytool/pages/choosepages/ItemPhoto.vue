@@ -3,10 +3,12 @@ import {defineProps} from 'vue'
 import {Template} from "@/base/model/model.ts";
 const prop=defineProps(["template"])
 const template:Template=prop.template
+
 </script>
 
 <template>
-<div class="item" :style="{backgroundImage: 'url('+template.photos[0].url+')'}">
+<div class="item" style="position: relative">
+  <img  :src="'http://'+template.photo[0].url" style="position: absolute;left: 0;top: 0;object-fit: fill;width: 100%;height: 100%;z-index: 1">
 <div class="ta p-header down">
 {{template.name}}
 </div>
@@ -27,8 +29,12 @@ const template:Template=prop.template
 }
 .ta{
   display: none;
+  z-index: 10;
 }
 .item{
+  width: 100%;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   .p-footer{

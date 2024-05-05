@@ -2,7 +2,7 @@
 import {reactive, ref} from 'vue';
 
 import MainSetting from "@/components/modifytool/pages/setpages/MainSetting.vue";
-import {ElButton, ElForm, ElFormItem, ElInput} from "element-plus";
+import {ElButton, ElForm, ElFormItem, ElInput, ElMessage} from "element-plus";
 import PhotoSetting from "@/components/PhotoSetting.vue";
 import VueMarkdown from 'vue-markdown-render';
 import * as test from "@/base/test.ts";
@@ -11,7 +11,8 @@ import PhotoA from "@/components/modifytool/pages/setpages/PhotoA.vue";
 import * as store from "@/base/store.ts";
 import * as viewutil from "@/base/util/viewutil.ts";
 import {exportData} from "@/base/model/dto-model.ts";
-import {refreshUser, saveInfo} from "@/base/request/requests.ts";
+import {mixedai, refreshUser, saveInfo} from "@/base/request/requests.ts";
+import {singleData} from "@/base/store.ts";
 
 
 const onCommit=()=>{
@@ -21,24 +22,36 @@ const onCommit=()=>{
 const reserveInfo = () => {
   store.singleData.view.settingTemplate.infomode=!store.singleData.view.settingTemplate.infomode
 };
-//todo 图片上传
 const form=reactive({
-  personilty:'一般',
+  personality:'一般',
   describe:'',
   url:''
 })
 function uploadInfo(){
   saveInfo(form).then((res)=>{
-    store.singleData.user.textData=res.data
+    if(res.code==1){
+      ElMessage({
+        message: "用户信息已更新",
+        type: 'success'
+      })
+      store.singleData.user.textData=res.data
+
+    }
   })
   if(form.url!=''){
-    store.singleData.user.photoData.push({
+    if(!store.singleData.user.photoData)
+      store.singleData.user.photoData=[{
         url:form.url,
-      describe:form.describe
-    })
-  }
+        describe:form.describe
+      }]
+    else
+      store.singleData.user.photoData.push({
+          url:form.url,
+          describe:form.describe
+      })
 
-  form.personilty='一般'
+  }
+  form.personality='一般'
   form.describe=''
   form.url=''
 }
@@ -57,7 +70,7 @@ const set=defineModel();
         </template>
         <el-scrollbar>
           <div class="photos up">
-            <PhotoA v-for="x in store.singleData.user.photoData" :src="x.url" :describe="x.describe"></PhotoA>
+            <PhotoA :key="store.singleData.user.photoData" v-for="x in store.singleData.user.photoData??[{url:'https://pic2.zhimg.com/v2-812f2b9e1413c13e6c82699514c3fc91_r.jpg',title:'example'}]" :src="x.url" :describe="x.describe"></PhotoA>
           </div>
         </el-scrollbar>
       </el-card>
@@ -67,7 +80,7 @@ const set=defineModel();
         </template>
         <el-scrollbar height="80vh">
           <div class="markdown-content" style="border: none;background-color: inherit">
-            <vue-markdown :source="store.singleData.user.textData"></vue-markdown>
+            <vue-markdown :source="store.singleData.user.textData??'test'"></vue-markdown>
           </div>
         </el-scrollbar>
       </el-card>
@@ -83,7 +96,8 @@ const set=defineModel();
           </template>
           MY INFO
         </el-button>
-        <el-button type="info" @click="uploadInfo(form)">上传信息集</el-button>
+        <el-button type="info" @click="uploadInfo(form)">上传信息</el-button>
+        <el-button type="info" @click="mixedai()">AI计算</el-button>
         <div style="margin-bottom: 30px"></div>
       </template>
       <MainSetting v-model="store.singleData.view.settingTemplate.infomode" ref="mainset" v-if="!store.singleData.view.settingTemplate.infomode"  class="drdc" :user="store.singleData.user"></MainSetting>
@@ -91,7 +105,7 @@ const set=defineModel();
       <template v-else>
         <el-form class="form" :model="form" label-width="70px">
           <el-form-item label="个性值">
-            <el-input v-model="form.personilty"></el-input>
+            <el-input v-model="form.personailty"></el-input>
           </el-form-item>
           <el-form-item label="描述">
             <el-input v-model="form.describe" type="textarea"

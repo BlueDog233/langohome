@@ -20,6 +20,11 @@
     --el-color-info-light-9: var(--bright-gold);
     --el-color-info-light-3: #fcbc18;
 }
+.el-scrollbar__view{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .dance-1{
     transition: all .6s ease;
     cursor: pointer;

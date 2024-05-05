@@ -3,18 +3,16 @@ import {onMounted} from "vue";
 import {getHtml} from "@/base/request/requests.ts";
 import {useRoute} from "vue-router";
 
-onMounted(()=>{
-  getHtml(useRoute().path.replace("/visit/",""),"main")
-})
 </script>
 
 <template>
-<div id="main">
-
-</div>
+  <iframe style="width: 100%;height: 100%" :src="'http://localhost:8000/api/visit/'+useRoute().path.replace('/visit/','')"></iframe>
 </template>
 
-<style scoped>
+<style >
+html{
+  background: white;
+}
 #main{
   all: initial;
 }

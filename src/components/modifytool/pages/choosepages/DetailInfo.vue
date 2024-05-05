@@ -9,10 +9,11 @@ import {Template} from "@/base/model/model.ts";
 
 const template=computed(()=>store.singleData.view.chooseTemplate.choose_template)
 const use=()=>{
-  useTemplate(template)
+  useTemplate(store.singleData.view.chooseTemplate.choose_template)
   //延迟加载
 }
 const star=()=>{
+  console.log(store.singleData.user.stars[1])
   if(store.singleData.user.stars.includes(template)){
     store.singleData.user.stars=store.singleData.user.stars.filter(e=>e!=template)
   }
@@ -26,18 +27,19 @@ const star=()=>{
   <el-scrollbar height="70vh">
     <div class="block text-center">
       <el-carousel motion-blur>
-        <el-carousel-item v-for="item in template.photos" :key="item">
-          <img :src="item.url" style="object-fit: cover;;width: 100%;height: 100%"/>
+        <el-carousel-item v-for="item in template.photo" :key="item">
+          <img :src="'http://'+item.url" style="object-fit: fill;;width: 100%;height: 100%"/>
         </el-carousel-item>
       </el-carousel>
     </div>
     <div class="text">
-      <span class="author">{{template.name}}</span>
+      <span class="name">{{template.name}}</span>
       <p class="describe">
         {{template.describe}}</p>
     </div>
+    <div style="flex-grow: 1"></div>
     <div class="footer" style="right: 0;">
-      <el-button type="info" @click="useTemplate">
+      <el-button type="info" @click="use">
         <template #icon>
           <span class="material-symbols-outlined">
 credit_score
@@ -46,14 +48,14 @@ credit_score
         使用该模板
       </el-button>
 
-    <el-button type="info" @click="star">
+<!--    <el-button type="info" @click="star">
       <template #icon>
         <span class="material-symbols-outlined" >
 star
 </span>
       </template>
       收藏该模板
-    </el-button>
+    </el-button>-->
     </div>
   </el-scrollbar>
 </div>
@@ -96,4 +98,5 @@ star
   display: flex;
   gap: 5px;
 }
+
 </style>

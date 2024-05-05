@@ -23,7 +23,7 @@ const star=()=>{
   <div class="info">
       <div class="block text-center">
         <el-carousel motion-blur direction="vertical">
-          <el-carousel-item  v-for="item in template.photos" :key="item">
+          <el-carousel-item  v-for="item in template.photo" :key="item">
             <img :src="item.url" style="object-fit: cover;;width: 100%;height: 100%"/>
 
           </el-carousel-item>

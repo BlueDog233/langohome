@@ -118,8 +118,8 @@ import * as store from '@/base/store.ts'
           <label class="tab_label" for="tab1">模板广场</label>
           <input type="radio" name="tab" id="tab2" value="create" v-model="store.singleData.view.chooseTemplate.select" class="tab tab--2"/>
           <label class="tab_label" for="tab2">创作中心</label>
-          <input type="radio" name="tab" id="tab3" value="stars" v-model="store.singleData.view.chooseTemplate.select" class="tab tab--3"/>
-          <label class="tab_label" for="tab3">我的收藏</label>
+<!--          <input type="radio" name="tab" id="tab3" value="stars" v-model="store.singleData.view.chooseTemplate.select" class="tab tab&#45;&#45;3"/>
+          <label class="tab_label" for="tab3">我的收藏</label>-->
           <div class="indicator"></div>
         </div>
       </template>

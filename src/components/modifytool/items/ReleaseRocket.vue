@@ -7,7 +7,9 @@ import {exportData} from "@/base/model/dto-model.ts";
 
 
 const releaseOrNo=()=>{
-  reservePublish()
+  reservePublish().then(()=>{
+    store.singleData.user.isPublished=!store.singleData.user.isPublished
+  })
 
 }
 </script>
