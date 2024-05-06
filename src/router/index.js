@@ -9,7 +9,7 @@ const router = createRouter({
             path: '/',
             name: 'mainset',
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
             },
             component: () => import('../pages/MainPage.vue')
         },{
@@ -34,16 +34,13 @@ const router = createRouter({
 export default router
 
 router.beforeEach((to, from, next) => {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
-        if (to.path === '/login') {
-            next('/');
-        } else {
+
             next();
-        }
     } else {
         if (to.meta['requiresAuth']) {
-            next('/login');
+            next('/auth');
         } else {
             next();
         }
@@ -53,5 +50,5 @@ router.beforeEach((to, from, next) => {
 
 export function logout() {
     sessionStorage.removeItem('token');
-    router.push('/login');
+    router.push('/auth');
 }

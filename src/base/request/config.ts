@@ -94,7 +94,7 @@ class AIRequestC extends Request{
 
     constructor(baseURL) {
 
-        super(baseURL, 30000);
+        super(baseURL, 120000);
 
 
         this.instance.interceptors.request.use(

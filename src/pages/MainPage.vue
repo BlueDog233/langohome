@@ -24,7 +24,7 @@ onBeforeMount(()=>{
   </transition>
   <div class="view">
     <div class="change-model" :style="{boxShadow:store.singleData.user.isPublished?'10px 10px 2rem 1px rgba(45, 208, 71, 0.62)':'10px 10px 2rem 1px rgba(0, 0, 0, 0.84)'}" >
-      <iframe style="width: 100%;height: 100%" :src="'http://localhost:8000/api/visit/mod/'+store.singleData.user.username"></iframe>
+      <iframe style="width: 100%;height: 100%;" :src="'http://localhost:8000/api/visit/mod/'+store.singleData.user.username"></iframe>
     </div>
   </div>
   <ToolsController></ToolsController>
@@ -34,9 +34,9 @@ onBeforeMount(()=>{
 
 <style>
 .change-model{
-  overflow: scroll;
+  overflow: hidden;
   background: white;
-
+  box-sizing: border-box;
 }
 #mount{
   all: initial;
